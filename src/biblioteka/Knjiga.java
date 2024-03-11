@@ -16,12 +16,27 @@ public class Knjiga {
 		return naslov;
 	}
 	public void setNaslov(String naslov) {
+		
+		if(naslov == null) {
+			throw new NullPointerException("Naslov ne sme biti null");
+		}
+		if(naslov == "") {
+			throw new IllegalArgumentException("Naslov ne sme biti prazan");
+		}
+		
+		
 		this.naslov = naslov;
 	}
 	public long getIsbn() {
 		return isbn;
 	}
 	public void setIsbn(long isbn) {
+		
+		if(isbn < 1000000000 || isbn > 9999999999999l) {
+			throw new IllegalArgumentException("ISBN mora imati bar 10 cifara");
+		}
+		
+		
 		this.isbn = isbn;
 	}
 	public List<Autor> getAutori() {
@@ -40,6 +55,10 @@ public class Knjiga {
 		return izdanje;
 	}
 	public void setIzdanje(int izdanje) {
+		
+		if(izdanje < 1)
+			throw new IllegalArgumentException("Izdanje mora biti 1 ili vece");
+		
 		this.izdanje = izdanje;
 	}
 	
