@@ -1,17 +1,27 @@
 package biblioteka;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import biblioteka.interfejs.BibliotekaInterfejs;
+import util.VremenskiServis;
 
 public class Biblioteka implements BibliotekaInterfejs {
 
 	
 	List<Knjiga> knjige = new ArrayList<Knjiga>();
 	
+	private VremenskiServis s;
+	
+	public Biblioteka(VremenskiServis s) {
+		
+		this.s = s;
+		
+	}
+	
 	@Override
-	public void dodajKnjigu(Knjiga k) {
+	public LocalDateTime dodajKnjigu(Knjiga k) {
 		
 		if(k == null) {
 			throw new NullPointerException();
@@ -21,10 +31,15 @@ public class Biblioteka implements BibliotekaInterfejs {
 		}
 		
 		knjige.add(k);	
+		
+		VremenskiServis s = new VremenskiServis();
+		
+		return s.vratiVreme("Beograd");
+				
 	}
 
 	@Override
-	public void obrisiKnjigu(Knjiga k) {
+	public LocalDateTime obrisiKnjigu(Knjiga k) {
 		
 		if(k == null) {
 			throw new NullPointerException();
@@ -35,6 +50,10 @@ public class Biblioteka implements BibliotekaInterfejs {
 		}
 		
 		knjige.remove(k);
+		
+		VremenskiServis s = new VremenskiServis();
+		
+		return s.vratiVreme("Beograd");
 	}
 
 	@Override
